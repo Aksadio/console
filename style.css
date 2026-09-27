@@ -1,207 +1,224 @@
-:root {
-  --bg: #020b07;
-  --panel: rgba(7, 18, 15, 0.95);
-  --line: rgba(72, 255, 170, 0.22);
-  --text: #9bfcc9;
-  --text-strong: #dfffee;
-  --text-dim: rgba(155, 252, 201, 0.6);
-  --green: #3cff9c;
-  --green-2: #1ddc8a;
-  --green-3: #97ffc7;
-  --red: #ff5d73;
-  --yellow: #ffd166;
-  --shadow: rgba(60, 255, 156, 0.35);
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Ghost Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="matrix"></canvas>
 
-* {
-  box-sizing: border-box;
-}
+    <div class="app-shell">
+      <header class="topbar glass">
+        <div class="left-cluster">
+          <div class="window-controls">
+            <span class="dot red"></span>
+            <span class="dot amber"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="brand-wrap">
+            <span class="brand">VOIDNET</span>
+            <span class="brand-sub">secure relay // tier-9</span>
+          </div>
+        </div>
 
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at top, rgba(20, 63, 43, 0.75), transparent 50%),
-    #020b07;
-  color: var(--text);
-  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
-}
+        <div class="status-strip">
+          <span class="status-pill online">ONLINE</span>
+          <span class="status-pill">NODE 07</span>
+          <span class="status-pill">LAT 04ms</span>
+        </div>
+      </header>
 
-body {
-  display: grid;
-  place-items: center;
-  padding: 24px;
-}
+      <div class="workspace">
+        <aside class="sidebar glass">
+          <div class="nav-title">SYSTEM</div>
+          <nav class="nav">
+            <button class="nav-btn active" data-page="overview">Overview</button>
+            <button class="nav-btn" data-page="console">Console</button>
+            <button class="nav-btn" data-page="network">Network</button>
+            <button class="nav-btn" data-page="intel">Intel</button>
+            <button class="nav-btn" data-page="vault">Vault</button>
+            <button class="nav-btn" data-page="settings">Settings</button>
+          </nav>
 
-.crt {
-  position: relative;
-  width: min(1100px, 100%);
-  height: min(750px, 85vh);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 0 30px var(--shadow);
-  overflow: hidden;
-}
+          <div class="mini-panel">
+            <div class="mini-label">Access</div>
+            <div class="mini-value">root / ghost-alpha</div>
+            <div class="mini-bars">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </aside>
 
-.crt::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.04) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
+        <main class="main-panel">
+          <section class="page active" id="overview">
+            <div class="hero glass">
+              <div>
+                <p class="eyebrow">// intrusion matrix</p>
+                <h1>Ghost relay synchronized.</h1>
+              </div>
+              <div class="pulse-ring"></div>
+            </div>
 
-.topbar {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  background: rgba(18, 31, 27, 0.9);
-  border-bottom: 1px solid var(--line);
-  min-height: 44px;
-  padding: 0 18px;
-  color: var(--text-dim);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+            <div class="stats-grid">
+              <div class="stat-card glass">
+                <div class="stat-top">Packet Flow</div>
+                <div class="stat-value" data-value="84">84</div>
+                <div class="stat-bottom">Packets/s</div>
+              </div>
 
-.left,
-.right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+              <div class="stat-card glass">
+                <div class="stat-top">Nodes Breached</div>
+                <div class="stat-value" data-value="27">27</div>
+                <div class="stat-bottom">active traces</div>
+              </div>
 
-.right {
-  justify-content: flex-end;
-}
+              <div class="stat-card glass">
+                <div class="stat-top">Signal Noise</div>
+                <div class="stat-value" data-value="12">12</div>
+                <div class="stat-bottom">% destabilized</div>
+              </div>
 
-.center {
-  text-align: center;
-  color: var(--green-3);
-}
+              <div class="stat-card glass">
+                <div class="stat-top">Cipher Trust</div>
+                <div class="stat-value" data-value="96">96</div>
+                <div class="stat-bottom">encrypted</div>
+              </div>
+            </div>
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
-}
+            <div class="section-grid">
+              <div class="panel glass">
+                <div class="panel-header">
+                  <span>Threat Matrix</span>
+                  <button class="ghost-btn">Run scan</button>
+                </div>
+                <ul class="list">
+                  <li><span class="dot green small"></span> relay-03 // stable</li>
+                  <li><span class="dot amber small"></span> void-41 // jamming</li>
+                  <li><span class="dot red small"></span> archive-2 // compromised</li>
+                  <li><span class="dot blue small"></span> oracle-9 // monitored</li>
+                </ul>
+              </div>
 
-.dot.red { background: var(--red); }
-.dot.yellow { background: var(--yellow); }
-.dot.green { background: var(--green); }
+              <div class="panel glass">
+                <div class="panel-header">
+                  <span>Mission Feed</span>
+                  <button class="ghost-btn">Refresh</button>
+                </div>
+                <div class="feed">
+                  <div class="feed-item"><span class="feed-time">11:42</span> Secure tunnel re-established.</div>
+                  <div class="feed-item"><span class="feed-time">11:46</span> Archive sync completed.</div>
+                  <div class="feed-item"><span class="feed-time">11:49</span> Obfuscation layer deployed.</div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-.terminal {
-  position: relative;
-  z-index: 1;
-  height: calc(100% - 92px);
-  overflow-y: auto;
-  padding: 20px 20px 10px;
-  line-height: 1.6;
-  font-size: 0.92rem;
-  white-space: pre-wrap;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(60, 255, 156, 0.4) transparent;
-}
+          <section class="page" id="console">
+            <div class="terminal-panel glass">
+              <div class="terminal-topbar">
+                <div class="window-controls">
+                  <span class="dot red"></span>
+                  <span class="dot amber"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="terminal-title">void-shell://ghost</span>
+              </div>
 
-.terminal::-webkit-scrollbar {
-  width: 8px;
-}
+              <div id="terminal" class="terminal" aria-live="polite"></div>
 
-.terminal::-webkit-scrollbar-thumb {
-  background: rgba(60, 255, 156, 0.35);
-  border-radius: 999px;
-}
+              <div class="input-row">
+                <span class="prompt">root@ghost:~$</span>
+                <input id="command-input" type="text" spellcheck="false" autocomplete="off" />
+              </div>
+            </div>
+          </section>
 
-.line {
-  margin: 2px 0;
-  color: var(--text);
-  text-shadow: 0 0 8px rgba(60, 255, 156, 0.2);
-}
+          <section class="page" id="network">
+            <div class="panel glass full-panel">
+              <div class="panel-header">
+                <span>Network Topology</span>
+                <button class="ghost-btn">Trace route</button>
+              </div>
+              <div class="map-grid">
+                <div class="node node-main">Ghost</div>
+                <div class="node node-ok">Relay 03</div>
+                <div class="node node-ok">Relay 07</div>
+                <div class="node node-bad">Archive 2</div>
+                <div class="node node-scan">Oracle 9</div>
+                <div class="node node-ok">Vault 4</div>
+              </div>
+            </div>
+          </section>
 
-.line.system {
-  color: var(--text-dim);
-}
+          <section class="page" id="intel">
+            <div class="intel-grid">
+              <div class="panel glass">
+                <div class="panel-header"><span>Threat Intel</span></div>
+                <ul class="intel-list">
+                  <li>Target: BLACKWELL GRID</li>
+                  <li>Signal noise: 12%</li>
+                  <li>Vector: packet spoofing</li>
+                  <li>Exposure: minimal</li>
+                </ul>
+              </div>
 
-.line.success {
-  color: var(--green-3);
-}
+              <div class="panel glass">
+                <div class="panel-header"><span>Recon Notes</span></div>
+                <div class="notes-box">
+                  Access nodes remain stable. Firewall signatures show old protocol fingerprints. A shadow tunnel is still active across the western channel.
+                </div>
+              </div>
+            </div>
+          </section>
 
-.line.warning {
-  color: var(--yellow);
-}
+          <section class="page" id="vault">
+            <div class="vault-grid">
+              <div class="vault-card glass">
+                <div class="vault-title">Delta Key</div>
+                <div class="vault-code">7F-9A-C4-EE-2D</div>
+              </div>
+              <div class="vault-card glass">
+                <div class="vault-title">Shadow Manifest</div>
+                <div class="vault-code">archive/0012</div>
+              </div>
+              <div class="vault-card glass">
+                <div class="vault-title">Covert Route</div>
+                <div class="vault-code">SLOT-14 / NOISE</div>
+              </div>
+            </div>
+          </section>
 
-.line.error {
-  color: var(--red);
-}
+          <section class="page" id="settings">
+            <div class="settings-grid">
+              <div class="panel glass">
+                <div class="panel-header"><span>Interface Config</span></div>
+                <div class="toggle-row"><span>CRT glow</span><button class="toggle on">ON</button></div>
+                <div class="toggle-row"><span>Ghost mask</span><button class="toggle on">ON</button></div>
+                <div class="toggle-row"><span>Signal jitter</span><button class="toggle">OFF</button></div>
+              </div>
 
-.line.command {
-  color: var(--text-strong);
-}
+              <div class="panel glass">
+                <div class="panel-header"><span>System Actions</span></div>
+                <div class="action-stack">
+                  <button class="action-btn">Reboot Relay</button>
+                  <button class="action-btn">Inject Node</button>
+                  <button class="action-btn">Sweep Trace</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
 
-.input-row {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 10px 18px 18px;
-  border-top: 1px solid var(--line);
-  background: rgba(6, 12, 11, 0.9);
-}
-
-.prompt {
-  color: var(--green);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-#command-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text-strong);
-  font: inherit;
-  flex: 1;
-  min-width: 0;
-  caret-color: var(--green);
-  text-shadow: 0 0 10px rgba(60, 255, 156, 0.35);
-}
-
-#command-input::placeholder {
-  color: rgba(155, 252, 201, 0.35);
-}
-
-@media (max-width: 640px) {
-  body {
-    padding: 10px;
-  }
-
-  .crt {
-    height: 92vh;
-  }
-
-  .topbar {
-    font-size: 0.6rem;
-    letter-spacing: 0.06em;
-  }
-
-  .terminal {
-    font-size: 0.8rem;
-  }
-}
+    <script src="script.js"></script>
+  </body>
+</html>
