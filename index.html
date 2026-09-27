@@ -1,31 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matrix Terminal</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="crt">
-      <div class="topbar">
-        <div class="left">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-        </div>
-        <div class="center">secure-shell://matrix-7 / root@neo</div>
-        <div class="right">status: online</div>
-      </div>
-
-      <div id="terminal" class="terminal" aria-live="polite"></div>
-
-      <div class="input-row">
-        <span class="prompt">root@matrix:~$</span>
-        <input id="command-input" type="text" spellcheck="false" autocomplete="off" />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOIDNET // Ghost Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="app-shell">
+    <header class="topbar glass">
+      <div class="brand"><span class="lights"><i></i><i></i><i></i></span><strong>VOIDNET</strong><small>SECURE RELAY // TIER-9</small></div>
+      <div class="status"><b>● ONLINE</b><span>NODE 07</span><span>LAT 04ms</span></div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar glass">
+        <label>SYSTEM MODULES</label>
+        <nav>
+          <button class="nav-btn active" data-page="overview">⌂ Overview</button>
+          <button class="nav-btn" data-page="console">▣ Console</button>
+          <button class="nav-btn" data-page="network">⌁ Network</button>
+          <button class="nav-btn" data-page="intel">◈ Intel</button>
+          <button class="nav-btn" data-page="vault">▣ Vault</button>
+          <button class="nav-btn" data-page="settings">⚙ Settings</button>
+        </nav>
+        <div class="access-box"><label>ACCESS LEVEL</label><strong>ROOT / GHOST-ALPHA</strong><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+      </aside>
+      <main class="content">
+        <section class="page active" id="overview">
+          <div class="hero glass"><div><small>// INTRUSION MATRIX</small><h1>Ghost relay<br><em>synchronized.</em></h1><button class="primary" data-page-link="console">OPEN SECURE SHELL →</button></div><div class="radar"><span></span><b>●</b></div></div>
+          <div class="stats"><article class="glass"><small>PACKET FLOW</small><strong>084</strong><span>packets / sec</span></article><article class="glass"><small>NODES BREACHED</small><strong>027</strong><span>active traces</span></article><article class="glass"><small>SIGNAL NOISE</small><strong>012%</strong><span>destabilized</span></article><article class="glass"><small>CIPHER TRUST</small><strong>096%</strong><span>encrypted</span></article></div>
+          <div class="columns"><article class="panel glass"><header>THREAT MATRIX <button class="small-btn">RUN SCAN</button></header><p>🟢 relay-03 <span>STABLE</span></p><p>🟡 void-41 <span>JAMMING</span></p><p>🔴 archive-2 <span>COMPROMISED</span></p><p>🔵 oracle-9 <span>MONITORED</span></p></article><article class="panel glass"><header>MISSION FEED <button class="small-btn">REFRESH</button></header><p><time>11:42</time> Secure tunnel re-established.</p><p><time>11:46</time> Archive sync completed.</p><p><time>11:49</time> Obfuscation layer deployed.</p></article></div>
+        </section>
+        <section class="page" id="console"><article class="terminal glass"><header><span>● ● ●</span> void-shell://ghost</header><div id="output"></div><div class="command-line"><b>root@ghost:~$</b><input id="command" autocomplete="off" spellcheck="false" autofocus></div></article></section>
+        <section class="page" id="network"><article class="panel glass network"><header>NETWORK TOPOLOGY <button class="small-btn" data-action="trace">TRACE ROUTE</button></header><div class="nodes"><b>GHOST</b><i>RELAY 03</i><i>RELAY 07</i><i class="bad">ARCHIVE 2</i><i class="blue">ORACLE 9</i><i>VAULT 4</i></div></article></section>
+        <section class="page" id="intel"><div class="columns"><article class="panel glass"><header>THREAT INTEL</header><p>TARGET <strong>BLACKWELL GRID</strong></p><p>SIGNAL NOISE <strong>12%</strong></p><p>VECTOR <strong>PACKET SPOOFING</strong></p><p>EXPOSURE <strong>MINIMAL</strong></p></article><article class="panel glass"><header>RECON NOTES</header><p class="notes">Access nodes remain stable. Firewall signatures show old protocol fingerprints. A shadow tunnel is still active across the western channel.</p></article></div></section>
+        <section class="page" id="vault"><div class="vault"><article class="glass"><small>DELTA KEY</small><strong>7F-9A-C4-EE-2D</strong></article><article class="glass"><small>SHADOW MANIFEST</small><strong>ARCHIVE/0012</strong></article><article class="glass"><small>COVERT ROUTE</small><strong>SLOT-14 / NOISE</strong></article></div></section>
+        <section class="page" id="settings"><div class="columns"><article class="panel glass"><header>INTERFACE CONFIG</header><p>CRT GLOW <button class="toggle on">ON</button></p><p>GHOST MASK <button class="toggle on">ON</button></p><p>SIGNAL JITTER <button class="toggle">OFF</button></p></article><article class="panel glass"><header>SYSTEM ACTIONS</header><button class="wide-btn" data-action="reboot">REBOOT RELAY</button><button class="wide-btn" data-action="sweep">SWEEP TRACE</button></article></div></section>
+      </main>
     </div>
-
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>
