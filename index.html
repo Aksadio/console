@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Terminal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="crt">
+      <div class="topbar">
+        <div class="left">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="center">secure-shell://matrix-7 / root@neo</div>
+        <div class="right">status: online</div>
+      </div>
+
+      <div id="terminal" class="terminal" aria-live="polite"></div>
+
+      <div class="input-row">
+        <span class="prompt">root@matrix:~$</span>
+        <input id="command-input" type="text" spellcheck="false" autocomplete="off" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
